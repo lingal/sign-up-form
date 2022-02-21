@@ -15,12 +15,16 @@ html {
 }
 
 body {
-  background-color: #ecf0f1;
+  background-color: #d1d8ec;
   font-family: "Open Sans", sans-serif;
   overflow: hidden;
 }
 
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   font-weight: normal;
 }
 
@@ -29,15 +33,16 @@ form {
 }
 
 label,
-input {
+input,
+button {
   display: block;
 }
 
-.animate, .overlay .overlay-content .signup-form input, .overlay .overlay-content .overlay-close, .overlay .overlay-content, .btn span, .btn {
+.animate, .overlay .overlay-content .signup-form .form-control input, .overlay .overlay-content .overlay-close, .overlay .overlay-content, .btn span, .btn {
   transition: all 0.3s;
 }
 
-main {
+.main {
   display: block;
   width: 100%;
   height: 100%;
@@ -68,18 +73,15 @@ main {
   font-size: 14px;
   text-transform: uppercase;
 }
-.btn span .fa {
+.btn span i {
   margin-left: 8px;
   font-size: 18px;
   vertical-align: middle;
 }
-.btn:not(.btn-outline) {
-  background-color: #fff;
-}
-.btn:not(.btn-outline) span {
+.btn span {
   color: #666;
 }
-.btn:not(.btn-outline):hover {
+.btn:hover {
   background-color: #f7f7f7;
 }
 .btn.btn-outline {
@@ -104,7 +106,9 @@ main {
   bottom: 0;
   left: 0;
   right: 0;
-  box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.05);
+  background-color: #d1d8ec;
+  box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
+  -webkit-box-shadow: 12px 12px 24px #b2b8c9, -12px -12px 24px #f0f8ff;
 }
 
 .overlay {
@@ -121,7 +125,7 @@ main {
   transition: opacity 0.5s, transform 0.5s, z-index 0s 0.5s;
 }
 .overlay .overlay-background {
-  background-color: rgba(44, 62, 80, 0.8);
+  background-color: #95a5a7;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -139,12 +143,14 @@ main {
   z-index: 10;
 }
 .overlay .overlay-content .overlay-close {
-  display: block;
+  position: absolute;
   font-size: 35px;
   cursor: pointer;
-  position: absolute;
-  top: 0;
+  top: -10px;
   right: 15px;
+  background: transparent;
+  border: none;
+  color: #ffffff;
 }
 .overlay .overlay-content .overlay-close:hover {
   opacity: 0.8;
@@ -164,22 +170,37 @@ main {
 .overlay .overlay-content .signup-form {
   margin-top: 35px;
 }
-.overlay .overlay-content .signup-form label {
+.overlay .overlay-content .signup-form .form-control {
+  margin-bottom: 1rem;
+}
+.overlay .overlay-content .signup-form .form-control label {
   line-height: 100%;
   margin-bottom: 5px;
   font-size: 14px;
 }
-.overlay .overlay-content .signup-form input {
+.overlay .overlay-content .signup-form .form-control input {
   background-color: transparent;
   width: 100%;
   height: 30px;
-  margin-bottom: 20px;
   padding: 0 8px;
   border: 1px solid rgba(254, 254, 254, 0.3);
   border-radius: 5px;
 }
-.overlay .overlay-content .signup-form input:hover, .overlay .overlay-content .signup-form input:focus {
+.overlay .overlay-content .signup-form .form-control input:hover, .overlay .overlay-content .signup-form .form-control input:focus {
   border-color: #fff;
+}
+.overlay .overlay-content .signup-form .form-control.success input {
+  border-color: #1aff67;
+}
+.overlay .overlay-content .signup-form .form-control.error input {
+  border-color: #d65400;
+}
+.overlay .overlay-content .signup-form .form-control small {
+  color: #d65400;
+  visibility: hidden;
+}
+.overlay .overlay-content .signup-form .form-control.error small {
+  visibility: visible;
 }
 .overlay .overlay-content .signup-form .submit-btn {
   width: 150px;
@@ -192,6 +213,61 @@ main {
 }
 .overlay.short .overlay-content {
   margin: 30px auto;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  place-content: center;
+  z-index: 999;
+  background-color: #95a5a7;
+}
+.modal .modal-content {
+  display: flex;
+  gap: 3rem;
+  text-align: center;
+  color: #fff;
+  text-transform: capitalize;
+  -webkit-animation: focus-in-expand-fwd 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: focus-in-expand-fwd 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@-webkit-keyframes focus-in-expand-fwd {
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-transform: translateZ(-800px);
+    transform: translateZ(-800px);
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes focus-in-expand-fwd {
+  0% {
+    letter-spacing: -0.5em;
+    -webkit-transform: translateZ(-800px);
+    transform: translateZ(-800px);
+    -webkit-filter: blur(12px);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-filter: blur(0);
+    filter: blur(0);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 600px) {
